@@ -97,6 +97,54 @@ x[ please.forEach ]( function ( currentValue, currentKey, obj ) {
 //=> [ 1, 2, 3 ]
 ```
 
+##### map( callback )
+
+###### callback
+
+Type: `function`
+Accepts: `(Current Value, Current Key, Object itself)`
+
+Performs `callback` once for each value of each key of the object. Returns a new object  with the values transformed.
+
+```js
+x[ please.map ]( function ( currentValue, currentKey, obj ) {
+        if( Number(currentValue)===currentValue ){
+        	return currentValue+1;
+        }
+        if( Array.isArray( currentValue ) ){
+        	return currentValue.map(function(cur,i,arr){
+            	return cur+2;
+            });
+        }
+        return currentValue;
+    } )
+//=> { a:2, b:{ c:4 }, d:[ 3, 4, 5 ] }
+```
+
+##### every( callback )
+
+###### callback
+
+Type: `function`
+Accepts: `(Current Value, Current Key, Object itself)`
+
+Performs `callback` once for each value of each key of the object. Returns true if and only if callback returns true for every value of the object.
+
+```js
+let does=please;
+x[ does.every ]( function ( currentValue, currentKey, obj ) {
+        if( Number(currentValue)===currentValue ){
+        	return true;
+        }
+        if( Array.isArray( currentValue ) ){
+        	return currentValue.map(function(cur,i,arr){
+            	return cur+2;
+            });
+        }
+        return currentValue;
+    } )
+ ```
+
 ## License
 
 MIT © [Nick The Sick](http://nickthesick.com)
