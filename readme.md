@@ -1,4 +1,4 @@
-# objextension [![Build Status](https://travis-ci.org/nperez0111/objextension.svg?branch=master)](https://travis-ci.org/nperez0111/objextension)
+# objextension [![Build Status](https://travis-ci.org/nperez0111/objExtension.svg?branch=master)](https://travis-ci.org/nperez0111/objExtension)
 
 > The implementation of several methods the Object class is missing for all objects
 
