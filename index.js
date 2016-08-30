@@ -120,15 +120,15 @@ const extend = require( 'objextender' ),
         keyOf: function ( get, query ) {
             let index = allOptions.values( get ).indexOf( query )
             if ( index === -1 ) {
-                return false;
+                return false
             }
-            return allOptions.keys( get )[ index ];
+            return allOptions.keys( get )[ index ]
         },
         includes: function ( get, query ) {
-            return allOptions.keyOf( get, query ) === false ? false : true;
+            return allOptions.keyOf( get, query ) === false ? false : true
         },
         has: function ( get, query ) {
-            return allOptions.keys( get ).includes( query )
+            return allOptions.keys( get ).indexOf( query ) > -1
         },
         copy: function ( get ) {
             return makeObj( allOptions.keys( get ), allOptions.values( get ) )
