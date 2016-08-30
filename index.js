@@ -127,6 +127,9 @@ const extend = require( 'objextender' ),
         includes: function ( get, query ) {
             return allOptions.keyOf( get, query ) === false ? false : true;
         },
+        has: function ( get, query ) {
+            return allOptions.keys( get ).includes( query )
+        },
         copy: function ( get ) {
             return makeObj( allOptions.keys( get ), allOptions.values( get ) )
         },

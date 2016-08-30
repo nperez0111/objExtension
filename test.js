@@ -79,6 +79,10 @@ test( 'Includes Method', t => {
     t.true( x[ please.includes ]( true ) )
 } )
 
+test( 'Has Method', t => {
+    t.true( x[ please.has ]( 'a' ) )
+} )
+
 test( 'Copy Method', t => {
     let y = {
         s: 3
