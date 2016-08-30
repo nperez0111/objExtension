@@ -154,8 +154,14 @@ const extend = require( 'objextender' ),
             return this;
         }
     }
+
 module.exports = ( opts ) => {
     if ( opts === undefined ) {
         return extend( allOptions );
+    }
+    if ( opts.toExtend ) {
+        return extend( allOptions, {
+            toExtend: opts.toExtend
+        } )
     }
 };

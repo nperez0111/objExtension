@@ -138,3 +138,16 @@ test( 'Assign Method', t => {
         x: 3
     } )
 } )
+
+test( 'Extend single Obj Option', t => {
+    let single = function () {
+        this.x = 34
+    }
+
+    let go = fn( {
+        toExtend: single
+    } )
+
+    t.is( ( new single() )[ go.pick ]( 'x' ), 34 )
+
+} )
