@@ -117,10 +117,21 @@ const extend = require( 'objextender' ),
             return makeObj( temp[ 0 ], temp[ 1 ] )
 
         },
-        keyOf: function ( get, query ) {
+        keyOf: function ( get, query, isArray ) {
+            let obj = get()
+
+            if ( Array.isArray( query ) && !isArray ) {
+
+                return query.map( ( cur ) => {
+
+                    return allOptions.keyOf( get, cur )
+
+                } )
+
+            }
             let index = allOptions.values( get ).indexOf( query )
             if ( index === -1 ) {
-                return false
+                throw Error( `Object does not have value '${query}'` )
             }
             return allOptions.keys( get )[ index ]
         },

@@ -1,7 +1,8 @@
-# objextension [![Build Status](https://travis-ci.org/nperez0111/objExtension.svg?branch=master)](https://travis-ci.org/nperez0111/objExtension)
+# objExtension [![Build Status](https://travis-ci.org/nperez0111/objExtension.svg?branch=master)](https://travis-ci.org/nperez0111/objExtension)
 
 > The implementation of several methods the Object class that is missing for all objects
 > This uses Symbols to add to the prototype of the Object class, if you are not comfortable with this there is an option to add this to any class you please.
+> This adds most of the array methods to an Object allowing you to use your functional programming on objects as well.
 
 
 ## Install
@@ -78,6 +79,23 @@ Returns the values of an object as an `Array`.
 ```js
 x[ o.values ]()
 //=>[ 1, { c:4 }, [ 1, 2, 3 ] ]
+```
+
+##### keyOf( query , searchingArray )
+
+###### query
+
+Type: `Anything or Array of Anythings`
+###### searchingArray
+
+Type: `Boolean`<br>
+Description: If you are searching for an array as the value set this to true otherwise it will search for each value in that array.
+Default: false
+
+Returns the key of the object where `query` is found. This is a pick method for the key of the object.
+```js
+x[ o.keyOf ](1)
+//=> 'a'
 ```
 
 ##### forEach( callback )
@@ -180,6 +198,26 @@ x[ does.some ]( function ( currentValue, currentKey, obj ) {
         return false
     } )
  //=> true
+ ```
+ 
+ ##### filter( callback )
+
+###### callback
+
+Type: `function`
+Accepts: `(Current Value, Current Key, Object itself)`
+
+Performs `callback` once for each value of each key of the object. Returns a new object with the values **if and only if** callback returns true for the value of the object.
+
+```js
+let does=please;
+x[ does.filter ]( function ( currentValue, currentKey, obj ) {
+        if( Number(currentValue)===currentValue ){
+        	return true;
+        }
+        return false
+    } )
+ //=> { a: 1 }
  ```
 
 

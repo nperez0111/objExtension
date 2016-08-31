@@ -73,6 +73,7 @@ test( 'Filter Method', t => {
 
 test( 'Keyof Method', t => {
     t.deepEqual( x[ please.keyOf ]( true ), "d" )
+    t.deepEqual( x[ please.keyOf ]( [ true ] ), [ "d" ] )
 } )
 
 test( 'Includes Method', t => {
