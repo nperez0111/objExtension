@@ -2,19 +2,6 @@
 const extend = require( 'objextender' ),
     merge = require( 'merge' ),
     isObj = require( 'is-object' ),
-    addDiff = function ( that, obj ) {
-        Object.keys( obj ).forEach( function ( cur ) {
-            if ( isObj( obj[ cur ] ) ) {
-                if ( !that.hasOwnProperty( cur ) || !isObj( that[ cur ] ) ) {
-                    that[ cur ] = {};
-                }
-                addDiff( that[ cur ], obj[ cur ] );
-            } else if ( !that.hasOwnProperty( cur ) ) {
-
-                that[ cur ] = obj[ cur ];
-            }
-        } );
-    },
     makeObj = function ( keys, values ) {
         let ret = {}
 
@@ -117,7 +104,7 @@ const extend = require( 'objextender' ),
             return makeObj( temp[ 0 ], temp[ 1 ] )
 
         },
-        keyOf: function ( get, query, isArray ) {
+        keyOf: function ( get, query, isArray, noError ) {
             let obj = get()
 
             if ( Array.isArray( query ) && !isArray ) {
@@ -131,12 +118,15 @@ const extend = require( 'objextender' ),
             }
             let index = allOptions.values( get ).indexOf( query )
             if ( index === -1 ) {
+                if ( noError ) {
+                    return false;
+                }
                 throw Error( `Object does not have value '${query}'` )
             }
             return allOptions.keys( get )[ index ]
         },
         includes: function ( get, query ) {
-            return allOptions.keyOf( get, query ) === false ? false : true
+            return allOptions.keyOf( get, query, false, true ) === false ? false : true
         },
         has: function ( get, query ) {
             return allOptions.keys( get ).indexOf( query ) > -1
@@ -161,6 +151,19 @@ const extend = require( 'objextender' ),
             return merge.recursive.apply( this, [ true ].concat( get() ).concat( Array.from( arguments ).slice( 1 ) ) );
         },
         assign: function ( get ) {
+            let addDiff = function ( that, obj ) {
+                allOptions.keys( () => obj ).forEach( function ( cur ) {
+                    if ( isObj( obj[ cur ] ) ) {
+                        if ( !that.hasOwnProperty( cur ) || !isObj( that[ cur ] ) ) {
+                            that[ cur ] = {};
+                        }
+                        addDiff( that[ cur ], obj[ cur ] );
+                    } else if ( !that.hasOwnProperty( cur ) ) {
+
+                        that[ cur ] = obj[ cur ];
+                    }
+                } );
+            }
             addDiff.call( this, this, allOptions.extend.apply( this, arguments ) )
             return this;
         }

@@ -21,7 +21,8 @@ let x = {
     b:{
     	c:4
     },
-    d:[1,2,3]
+    d:[1,2,3],
+    e:true
 }
 x[o.pick]('a')
 //=> 1
@@ -65,6 +66,37 @@ x[ o.pick ]('a')
 //=> 1
 ```
 
+##### copy( )
+
+Returns a copy of the current object.
+```js
+let y = {
+	a: 3
+}
+y[ o.copy ]()
+//=> { a: 3 }
+```
+
+##### remove( query )
+
+###### query
+
+Type: `string or Array of strings`
+Description: The Key to be removed.
+
+Returns the value of each key ( as an `Array` if `query` is an `Array` ).
+```js
+x.removeMe = 'has been removed'
+x[ o.remove ]( 'removeMe' )
+//=> 'has been removed'
+
+x.removeMe = 'has been removed'
+x.meTo = 'also'
+x[ o.remove ]( [ 'removeMe', 'meTo' ] )
+//=> [ 'has been removed', 'also' ]
+
+```
+
 ##### keys( )
 
 Returns the keys of an object as an `Array`.
@@ -92,10 +124,36 @@ Type: `Boolean`<br>
 Description: If you are searching for an array as the value set this to true otherwise it will search for each value in that array.
 Default: false
 
-Returns the key of the object where `query` is found. This is a pick method for the key of the object.
+Returns the key (or `Array` of keys) of the object where `query` is found. 
 ```js
 x[ o.keyOf ](1)
 //=> 'a'
+x[ o.keyOf ]( [ 1, true ] )
+//=> [ 'a', 'e' ]
+```
+
+##### includes( query )
+
+###### query
+
+Type: `Anything or Array of Anythings`
+
+Returns `true` **if and only if** query is in the values of the object. 
+```js
+x[ o.includes ](1)
+//=> true
+```
+
+##### has( query )
+
+###### query
+
+Type: `Anything or Array of Anythings`
+
+Returns `true` **if and only if** query is in the keys of the object. 
+```js
+x[ o.has ]('nonexistent')
+//=> false
 ```
 
 ##### forEach( callback )
@@ -219,7 +277,7 @@ x[ does.filter ]( function ( currentValue, currentKey, obj ) {
     } )
  //=> { a: 1 }
  ```
-
+ 
 
 ## License
 
