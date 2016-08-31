@@ -65,7 +65,7 @@ test( 'Some Method', t => {
 
 test( 'Filter Method', t => {
     t.deepEqual( x[ please.filter ]( function ( a ) {
-return Number( a ) === a
+        return Number( a ) === a
     } ), {
         b: 2
     } )

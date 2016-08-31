@@ -104,6 +104,7 @@ const extend = require( 'objextender' ),
                 ],
                 vals = allOptions.values( get ),
                 indexThatPassed = vals.forEach( function ( cur, i, arr ) {
+
                     if ( check.call( get(), cur, i, arr ) ) {
 
                         temp[ 0 ].push( keys[ i ] )
