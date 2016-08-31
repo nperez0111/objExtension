@@ -128,7 +128,7 @@ x[ please.map ]( function ( currentValue, currentKey, obj ) {
 Type: `function`
 Accepts: `(Current Value, Current Key, Object itself)`
 
-Performs `callback` once for each value of each key of the object. Returns true if and only if callback returns true for every value of the object.
+Performs `callback` once for each value of each key of the object. Returns true **if and only if** callback returns true for every value of the object.
 
 ```js
 let does=please;
@@ -136,14 +136,52 @@ x[ does.every ]( function ( currentValue, currentKey, obj ) {
         if( Number(currentValue)===currentValue ){
         	return true;
         }
-        if( Array.isArray( currentValue ) ){
-        	return currentValue.map(function(cur,i,arr){
-            	return cur+2;
-            });
-        }
-        return currentValue;
+        return false
     } )
+ //=> false
  ```
+ 
+ ##### none( callback )
+
+###### callback
+
+Type: `function`
+Accepts: `(Current Value, Current Key, Object itself)`
+
+Performs `callback` once for each value of each key of the object. Returns true **if and only if** callback returns false for every value of the object.
+
+```js
+let does=please;
+x[ does.none ]( function ( currentValue, currentKey, obj ) {
+        if( Number(currentValue)===currentValue ){
+        	return true;
+        }
+        return false
+    } )
+ //=> false
+ ```
+
+
+##### some( callback )
+
+###### callback
+
+Type: `function`
+Accepts: `(Current Value, Current Key, Object itself)`
+
+Performs `callback` once for each value of each key of the object. Returns true if `callback` returns true for **any** value of the object.
+
+```js
+let does=please;
+x[ does.some ]( function ( currentValue, currentKey, obj ) {
+        if( Number(currentValue)===currentValue ){
+        	return true;
+        }
+        return false
+    } )
+ //=> true
+ ```
+
 
 ## License
 
