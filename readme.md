@@ -52,11 +52,11 @@ let go = require('objextension')( {
 //=> 34
 ```
 
-#### Methods that are now available to all objects
+### Methods that are now available to all objects
 
-##### pick( query )
+#### pick( query )
 
-###### query
+##### query
 
 Type: `string or Array of strings`
 
@@ -66,7 +66,7 @@ x[ o.pick ]('a')
 //=> 1
 ```
 
-##### copy( )
+#### copy( )
 
 Returns a copy of the current object.
 ```js
@@ -77,9 +77,53 @@ y[ o.copy ]()
 //=> { a: 3 }
 ```
 
-##### remove( query )
+#### extend( objExtendingWith, [ otherObjects , , , ] )
 
-###### query
+##### objExtendingWith
+Type: `Object`
+Description: The object whose properties will be copied onto a copy of the current object.
+
+Returns a copy of the current object with `objExtendingWith`'s properties deeply copied onto it. Multiple Objects can be placed in different arguments.
+```js
+let obj={
+		b:4
+    },
+	ext = {
+		a: 3
+	}
+    
+obj[ o.extend ](ext)
+//=> { a: 3, b: 4 }
+
+obj
+//=> { b: 4 }
+```
+
+#### assign( objExtendingWith, [ otherObjects , , , ] )
+
+##### objExtendingWith
+Type: `Object`
+Description: The object whose properties will be copied onto the current object.
+
+Merges the current object with `objExtendingWith`'s properties deeply copied onto it. Therefore mutating the current object. Multiple Objects can be placed in different arguments.
+```js
+let obj={
+		b:4
+    },
+	ext = {
+		a: 3
+	}
+    
+obj[ o.assign ](ext)
+//=> { a: 3, b: 4 }
+
+obj
+//=> { a: 3, b: 4 }
+```
+
+#### remove( query )
+
+##### query
 
 Type: `string or Array of strings`
 Description: The Key to be removed.
@@ -97,7 +141,7 @@ x[ o.remove ]( [ 'removeMe', 'meTo' ] )
 
 ```
 
-##### keys( )
+#### keys( )
 
 Returns the keys of an object as an `Array`.
 ```js
@@ -105,7 +149,7 @@ x[ o.keys ]()
 //=> [ 'a', 'b', 'd' ]
 ```
 
-##### values( )
+#### values( )
 
 Returns the values of an object as an `Array`.
 ```js
@@ -113,15 +157,16 @@ x[ o.values ]()
 //=>[ 1, { c:4 }, [ 1, 2, 3 ] ]
 ```
 
-##### keyOf( query , searchingArray )
+#### keyOf( query , searchingArray )
 
-###### query
+##### query
 
 Type: `Anything or Array of Anythings`
-###### searchingArray
+
+##### searchingArray
 
 Type: `Boolean`<br>
-Description: If you are searching for an array as the value set this to true otherwise it will search for each value in that array.
+Description: If you are searching for an array as the value set this to true otherwise it will search for each value in that array.<br>
 Default: false
 
 Returns the key (or `Array` of keys) of the object where `query` is found. 
@@ -132,9 +177,9 @@ x[ o.keyOf ]( [ 1, true ] )
 //=> [ 'a', 'e' ]
 ```
 
-##### includes( query )
+#### includes( query )
 
-###### query
+##### query
 
 Type: `Anything or Array of Anythings`
 
@@ -144,9 +189,9 @@ x[ o.includes ](1)
 //=> true
 ```
 
-##### has( query )
+#### has( query )
 
-###### query
+##### query
 
 Type: `Anything or Array of Anythings`
 
@@ -156,9 +201,9 @@ x[ o.has ]('nonexistent')
 //=> false
 ```
 
-##### forEach( callback )
+#### forEach( callback )
 
-###### callback
+##### callback
 
 Type: `function`
 Accepts: `(Current Value, Current Key, Object itself)`
@@ -173,9 +218,9 @@ x[ please.forEach ]( function ( currentValue, currentKey, obj ) {
 //=> [ 1, 2, 3 ]
 ```
 
-##### map( callback )
+#### map( callback )
 
-###### callback
+##### callback
 
 Type: `function`
 Accepts: `(Current Value, Current Key, Object itself)`
@@ -197,9 +242,9 @@ x[ please.map ]( function ( currentValue, currentKey, obj ) {
 //=> { a:2, b:{ c:4 }, d:[ 3, 4, 5 ] }
 ```
 
-##### every( callback )
+#### every( callback )
 
-###### callback
+##### callback
 
 Type: `function`
 Accepts: `(Current Value, Current Key, Object itself)`
@@ -217,9 +262,9 @@ x[ does.every ]( function ( currentValue, currentKey, obj ) {
  //=> false
  ```
  
- ##### none( callback )
+#### none( callback )
 
-###### callback
+##### callback
 
 Type: `function`
 Accepts: `(Current Value, Current Key, Object itself)`
@@ -238,9 +283,9 @@ x[ does.none ]( function ( currentValue, currentKey, obj ) {
  ```
 
 
-##### some( callback )
+#### some( callback )
 
-###### callback
+##### callback
 
 Type: `function`
 Accepts: `(Current Value, Current Key, Object itself)`
@@ -258,9 +303,9 @@ x[ does.some ]( function ( currentValue, currentKey, obj ) {
  //=> true
  ```
  
- ##### filter( callback )
+#### filter( callback )
 
-###### callback
+##### callback
 
 Type: `function`
 Accepts: `(Current Value, Current Key, Object itself)`
