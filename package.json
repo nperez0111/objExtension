@@ -1,6 +1,6 @@
 {
     "name": "objextension",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "The implementation of several methods the Object class is missing for all objects",
     "license": "MIT",
     "repository": "nperez0111/objextension",
