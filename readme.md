@@ -1,8 +1,10 @@
 # objExtension [![Build Status](https://travis-ci.org/nperez0111/objExtension.svg?branch=master)](https://travis-ci.org/nperez0111/objExtension)
 
 > The implementation of several methods the Object class that is missing for all objects
-> This uses Symbols to add to the prototype of the Object class, if you are not comfortable with this there is an option to add this to any class you please.
-> This adds most of the array methods to an Object allowing you to use your functional programming on objects as well.
+
+
+This [uses Symbols](https://medium.com/@maxheiber/safe-monkey-patching-with-es2015-symbol-e36fb01ab794#.ftfkvldir) to add to the prototype of the Object class, if you are not comfortable with this there is an option to add this to any class you please.
+This adds most of the array methods to an Object allowing you to use your functional programming on objects as well.
 
 
 ## Install
@@ -28,6 +30,10 @@ x[o.pick]('a')
 //=> 1
 ```
 
+
+## Is this even safe?
+
+I was reading [this article](https://medium.com/@maxheiber/safe-monkey-patching-with-es2015-symbol-e36fb01ab794) and didn't even finish reading the article to see that he made an NPM module. I quickly made this package _(and of course I like it better)_ 
 
 ## API
 

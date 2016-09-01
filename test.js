@@ -78,10 +78,16 @@ test( 'Keyof Method', t => {
 
 test( 'Includes Method', t => {
     t.true( x[ please.includes ]( true ) )
+    t.false( x[ please.includes ]( "notExistent" ) )
+        //includes is not using deep equality checks
+    t.false( x[ please.includes ]( {
+        c: 1
+    } ) )
 } )
 
 test( 'Has Method', t => {
     t.true( x[ please.has ]( 'a' ) )
+    t.false( x[ please.has ]( 'notExistent' ) )
 } )
 
 test( 'Copy Method', t => {
