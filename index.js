@@ -158,7 +158,7 @@ const extend = require( 'objextender' ),
                             that[ cur ] = {};
                         }
                         addDiff( that[ cur ], obj[ cur ] );
-                    } else if ( !that.hasOwnProperty( cur ) ) {
+                    } else {
 
                         that[ cur ] = obj[ cur ];
                     }
