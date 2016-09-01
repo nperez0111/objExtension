@@ -144,6 +144,23 @@ test( 'Assign Method', t => {
         d: 3,
         x: 3
     } )
+    t.deepEqual( {
+        a: {
+            b: 2,
+            c: 4
+        }
+    }[ please.assign ]( {
+        a: {
+            b: 4,
+            d: 3
+        }
+    } ), {
+        a: {
+            b: 4,
+            c: 4,
+            d: 3
+        }
+    } )
 } )
 
 test( 'Extend single Obj Option', t => {
